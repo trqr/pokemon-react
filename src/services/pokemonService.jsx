@@ -8,7 +8,7 @@ async function getData(pokemonId) {
 
 export async function getPokemons(compteurPokemons, nbDePokemonParPage) {
     const promises = [];
-  for (let i = 0; i < nbDePokemonParPage; i++) {
+  for (let i = 0; i < 500; i++) {
     promises.push(getData(compteurPokemons))
     compteurPokemons++;
   }

@@ -26,7 +26,7 @@ function Card({pokemon, onClickFunction}) {
         <div class="card-image">
             <figure class="image is-4by3">
             <img
-                src={pokemon.sprites.other.dream_world.front_default}
+                src={pokemon.sprites.other.dream_world.front_default || pokemon.sprites.other.home.front_default}
                 alt="Placeholder image"
 
             />

@@ -3,6 +3,7 @@ import { getPokemons } from '../services/pokemonService';
 import Card from './card';
 import '../styles/pokemonList.css'
 import { TypeTag } from './typeTag';
+import Pagination from './pagination';
 
 
 
@@ -10,8 +11,9 @@ export function PokemonList() {
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedType, setSelectedType] = useState(null);
-    const [nbDePokemonParPage, setNbPokemonParPage] = useState(100);
+    const [nbDePokemonParPage, setNbPokemonParPage] = useState(25);
     const [compteurPokemons, setCompteurPokemons] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
 
 
@@ -25,21 +27,21 @@ export function PokemonList() {
     };
 
     loadPokemons();
-    }, [compteurPokemons, nbDePokemonParPage]);
+    }, [compteurPokemons]);
 
 
     // function filterByType(){
     // return pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType);
     // }
 
-    const filteredByType = selectedType ? pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType) : pokemons;
+    const filteredByType = selectedType ? pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType).slice(0, nbDePokemonParPage) : pokemons.slice(0, nbDePokemonParPage);
 
    
     const presentTagArray = [];
 
     function showingPresentTags(){
-        for (let i = 0; i < filteredByType.length; i++){
-            const pokemonType = filteredByType[i].types[0].type.name;
+        for (let i = 0; i < pokemons.length; i++){
+            const pokemonType = pokemons[i].types[0].type.name;
             if (!presentTagArray.find(tag => tag === pokemonType))
                 presentTagArray.push(pokemonType);
         }
@@ -51,6 +53,7 @@ export function PokemonList() {
     const handleChange = (e) => {
         setNbPokemonParPage(e.target.value);
     }
+
 
 
     return (
@@ -88,6 +91,7 @@ export function PokemonList() {
                         <option value="50">50</option>
                         <option value="75">75</option>
                         <option value="100">100</option>
+                        <option value="200">200</option>
                     </select>
                 </div>
             </div>
@@ -103,6 +107,9 @@ export function PokemonList() {
         ))}
         </div>
         {loading && <p>Chargement...</p>}
+        <Pagination />
     </div>
     );
 }
+
+export default PokemonList;
