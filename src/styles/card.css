@@ -1,0 +1,32 @@
+.bottom-card {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    .button {
+        height: 40px;
+        border: none;
+    }
+}
+
+.card {
+    padding-top: 10px;
+}
+
+.card-normal   { box-shadow: 0 0px 6px #A8A77A; }
+.card-fire     { box-shadow: 0 0px 6px #EE8130; }
+.card-water    { box-shadow: 0 0px 6px #6390F0; }
+.card-electric { box-shadow: 0 0px 6px #F7D02C; }
+.card-grass    { box-shadow: 0 0px 6px #7AC74C; }
+.card-ice      { box-shadow: 0 0px 6px #96D9D6; }
+.card-fighting { box-shadow: 0 0px 6px #C22E28; }
+.card-poison   { box-shadow: 0 0px 6px #A33EA1; }
+.card-ground   { box-shadow: 0 0px 6px #E2BF65; }
+.card-flying   { box-shadow: 0 0px 6px #A98FF3; }
+.card-psychic  { box-shadow: 0 0px 6px #F95587; }
+.card-bug      { box-shadow: 0 0px 6px #A6B91A; }
+.card-rock     { box-shadow: 0 0px 6px #B6A136; }
+.card-ghost    { box-shadow: 0 0px 6px #735797; }
+.card-dragon   { box-shadow: 0 0px 6px #6F35FC; }
+.card-dark     { box-shadow: 0 0px 6px #705746; }
+.card-steel    { box-shadow: 0 0px 6px #B7B7CE; }
+.card-fairy    { box-shadow: 0 0px 6px #D685AD; }
