@@ -10,21 +10,22 @@ export function PokemonList() {
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedType, setSelectedType] = useState(null);
+    const [nbDePokemonParPage, setNbPokemonParPage] = useState(100);
+    const [compteurPokemons, setCompteurPokemons] = useState(1);
 
-    const compteurPokemons = 1;
 
 
     
     useEffect(() => {
     const loadPokemons = async () => {
         setLoading(true);
-        const newPokemons = await getPokemons(compteurPokemons, 50);
-        setPokemons((prev) => [...prev, ...newPokemons]);
+        const newPokemons = await getPokemons(compteurPokemons, nbDePokemonParPage);
+        setPokemons(newPokemons);
         setLoading(false);
     };
 
     loadPokemons();
-    }, [compteurPokemons]);
+    }, [compteurPokemons, nbDePokemonParPage]);
 
 
     // function filterByType(){
@@ -33,6 +34,7 @@ export function PokemonList() {
 
     const filteredByType = selectedType ? pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType) : pokemons;
 
+   
     const presentTagArray = [];
 
     function showingPresentTags(){
@@ -43,7 +45,12 @@ export function PokemonList() {
         }
         console.log(presentTagArray);
     }
+    
     showingPresentTags();
+
+    const handleChange = (e) => {
+        setNbPokemonParPage(e.target.value);
+    }
 
 
     return (
@@ -75,11 +82,12 @@ export function PokemonList() {
         </div>
             <div className="sub-grid-header grid-header-right">
                 <div class="select is-small">
-                    <select>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>75</option>
-                        <option>100</option>
+                    <select value={nbDePokemonParPage} onChange={handleChange}>
+                        <option value="">Select</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="75">75</option>
+                        <option value="100">100</option>
                     </select>
                 </div>
             </div>
