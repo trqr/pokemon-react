@@ -21,12 +21,11 @@
     justify-content: center;
     align-items: center;
     .grid-header-left, .grid-header-right {
-        width: 8%;
+        width: 5%;
     }
     .grid-header-center {
-        width: 84%;
+        width: 90%;
         z-index: 3;
-        flex-wrap: wrap;
     }
 }
 

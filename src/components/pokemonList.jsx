@@ -7,15 +7,15 @@ import Pagination from './pagination';
 
 
 
+
 export function PokemonList() {
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedType, setSelectedType] = useState(null);
     const [nbDePokemonParPage, setNbPokemonParPage] = useState(25);
-    const [compteurPokemons, setCompteurPokemons] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
 
-
+    const compteurPokemons = 1;
 
     
     useEffect(() => {
@@ -34,8 +34,9 @@ export function PokemonList() {
     // return pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType);
     // }
 
-    const filteredByType = selectedType ? pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType).slice(0, nbDePokemonParPage) : pokemons.slice(0, nbDePokemonParPage);
+    const filteredByType = selectedType ? pokemons.filter(pokemon => pokemon.types[0].type.name === selectedType).slice(0+((currentPage-1)*nbDePokemonParPage), (nbDePokemonParPage*currentPage)) : pokemons.slice(0+((currentPage-1)*nbDePokemonParPage), (nbDePokemonParPage*currentPage));
 
+    const lastPage = pokemons.length / nbDePokemonParPage;
    
     const presentTagArray = [];
 
@@ -107,7 +108,7 @@ export function PokemonList() {
         ))}
         </div>
         {loading && <p>Chargement...</p>}
-        <Pagination />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} lastPage={lastPage}/>
     </div>
     );
 }
